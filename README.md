@@ -86,7 +86,15 @@ The result is:
 
 `{"message":"deleted","rows":1}`
 
+---
 
+Testing secret detection.  This is not a real secret no matter how much it might look like one.
+
+[default]
+aws_access_key_id = AKIASP2TPHJSZS32SDJB
+aws_secret_access_key = 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
+output = json
+region = us-east-2
 
 
 
