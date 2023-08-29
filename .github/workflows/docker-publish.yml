@@ -89,7 +89,7 @@ jobs:
           echo ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
           apt update && apt install -y curl
           curl -sfL 'https://raw.GitHubusercontent.com/orcasecurity/orca-cli/main/install.sh' | bash
-          orca-cli -p "default" image scan ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
+          orca-cli -p "default" image scan ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
