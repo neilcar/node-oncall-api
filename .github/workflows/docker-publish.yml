@@ -80,6 +80,15 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+      # Run Orca CLI against the previously created container image
+      - name: Orca CLI - Security Scanning
+        env:
+          ORCA_SECURITY_API_TOKEN: ${{ secrets.ORCA_SECURITY_API_TOKEN }}
+        run: |
+          set +e
+          apt update && apt install -y curl
+          curl -sfL 'https://raw.GitHubusercontent.com/orcasecurity/orca-cli/main/install.sh' | bash
+          orca-cli -p "default" image scan ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags }}
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
